@@ -1,0 +1,3 @@
+#ignora todos os arquivos .env em todas subs pastas
+
+.env

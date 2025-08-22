@@ -1,0 +1,225 @@
+/* Layout principal */
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  background: linear-gradient(
+    to bottom,
+    #f9f5f7,
+    #ffeaf1
+  ); /* Degradê suave com rosa claro */
+  min-height: 100vh;
+  justify-content: flex-start; /* Garante que o conteúdo seja alinhado ao topo */
+  box-sizing: border-box;
+  flex-grow: 1; /* Faz com que o conteúdo principal cresça */
+}
+
+/* Título principal */
+.main h2 {
+  color: #d47fa6; /* Rosa pastel elegante */
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Contêiner do nome do usuário e botão, com o botão abaixo */
+.nomeEbotao {
+  display: flex;
+  flex-direction: column; /* Coloca o botão abaixo do texto */
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin-top: 30px; /* Adiciona um espaço entre o título e o botão */
+  box-sizing: border-box;
+}
+
+/* Nome do usuário */
+.nameUser {
+  font-size: 1.4rem;
+  color: #d47fa6;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+.nameUser span {
+  color: #333;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 15px;
+  font-size: 1rem;
+}
+
+/* Botão com estilo elegante */
+.buttonAgendar {
+  background: linear-gradient(
+    135deg,
+    #ff99cc,
+    #ff66b2
+  ); /* Gradiente suave de rosa claro a rosa escuro */
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px; /* Bordas bem arredondadas */
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: all 0.3s ease; /* Efeito suave de transição */
+  outline: none;
+  margin-top: 20px; /* Adiciona um espaço entre o nome e o botão */
+  max-width: 400px;
+  width: 100%; /* Permite que o botão seja responsivo */
+}
+
+/* Efeito hover */
+.buttonAgendar:hover {
+  background: linear-gradient(
+    135deg,
+    #ff66b2,
+    #ff99cc
+  ); /* Inverte o gradiente ao passar o mouse */
+  transform: translateY(-3px); /* Elevação suave */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Aumenta a sombra ao passar o mouse */
+}
+
+/* Efeito de foco */
+button:focus {
+  outline: none; /* Remove a borda padrão ao focar no botão */
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.7); /* Adiciona um brilho suave ao focar */
+}
+
+/* Layout quando o botão está abaixo do título */
+.nameUser {
+  font-size: 20px;
+  margin: 0;
+}
+
+.semAgendamentoText {
+  font-size: 50px;
+  color: #333;
+  margin: 0;
+  margin-top: 80px;
+}
+
+/* Detalhes do agendamento */
+.detalhe-container {
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.detalhe-container h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.detalhe-container p {
+  font-size: 18px;
+  color: #555;
+  margin: 8px 0;
+}
+
+.detalhe-container strong {
+  color: #333;
+}
+
+.detalhe-container:last-child {
+  margin-bottom: 50px;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+  /* Ajusta o título */
+  .main h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  /* Ajusta o nome do usuário */
+  .nameUser {
+    font-size: 1.2rem;
+  }
+
+  /* Ajusta o botão */
+  button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin-top: 15px;
+    max-width: 350px; /* Limita o tamanho do botão */
+  }
+
+  /* Ajusta os detalhes do agendamento */
+  .detalhe-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .detalhe-container h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .detalhe-container p {
+    font-size: 16px;
+    margin: 6px 0;
+  }
+}
+
+/* Responsividade para telas menores que 480px */
+@media (max-width: 480px) {
+  .main {
+    padding: 10px;
+  }
+
+  /* Ajusta o título */
+  .main h2 {
+    font-size: 1.8rem;
+  }
+
+  /* Ajusta o nome do usuário */
+  .nameUser {
+    font-size: 1.1rem;
+  }
+
+  /* Ajusta o botão */
+  button {
+    font-size: 0.9rem;
+    padding: 8px 18px;
+    max-width: 300px; /* Limita o tamanho do botão */
+  }
+
+  /* Ajusta os detalhes do agendamento */
+  .detalhe-container {
+    padding: 12px;
+  }
+
+  .detalhe-container h2 {
+    font-size: 18px;
+  }
+
+  .detalhe-container p {
+    font-size: 14px;
+  }
+}
+
+/* Rodapé - agora fixo no final do conteúdo */
+.footer {
+  width: 100%;
+  background-color: #f0f0f0; /* Ajusta o fundo */
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative; /* Mudança para que ele seja relativo ao conteúdo */
+  margin-top: 20px;
+  bottom: 0;
+}

@@ -1,0 +1,35 @@
+#footer{
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    color: black;
+    padding: 0 50px;
+    width: 100%;
+}
+
+#text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#redes{
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.icon{
+    color: black;
+}
+
+@media screen and (max-width: 450pxpx) {
+    #footer {
+      display: flex;
+      flex-direction: column;
+    }
+}
