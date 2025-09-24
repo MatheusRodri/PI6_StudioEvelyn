@@ -18,7 +18,7 @@ export async function exibirAgendamentos() {
 // Função para criar um novo agendamento
 export async function criarAgendamento(agendamento) {
     try {
-
+        
         const comando = `INSERT INTO 
 		AGENDAMENTOS (DATA, HORA, VALOR, PROCEDIMENTO, TP_PAGAMENTO, ID_CLIENT)
 		VALUES (?, ?, ?, ?,?,?);`
@@ -37,7 +37,8 @@ export async function criarAgendamento(agendamento) {
 // Função para exibir um agendamento de um cliente por CPF
 export async function exibirAgendamentoCliente(cpf) {
     try {
-        const query = `SELECT * FROM VM_CLIENTES_AGEDAMENTOS1 WHERE CPF = ?`;
+        console.log("Esse é o agendamento: ",  cpf);
+        const query = `SELECT * FROM VM_CLIENTES_AGEDAMENTOS WHERE CPF = ?`;
         console.log("cpf", cpf);
         let resp = await con.query(query, cpf);
         console.log(resp[0])
