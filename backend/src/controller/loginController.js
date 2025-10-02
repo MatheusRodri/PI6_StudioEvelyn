@@ -6,10 +6,10 @@ const servidor = Router();
 //Rota para criar um novo cliente
 servidor.post('/cliente', async (req, res) => {
     try {
-        const cliente = req.body; // Assumindo que o corpo da requisição contém o objeto cliente
+        const cliente = req.body;
         console.log(cliente);
         const novoCliente = await criarCliente(cliente);
-        res.status(201).json(novoCliente);
+        res.status(200).json(novoCliente);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

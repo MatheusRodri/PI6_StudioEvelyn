@@ -1,4 +1,4 @@
-import con from "../connection.js";
+    import con from "../connection.js";
 
 // Função para criar um novo cliente
 export async function criarCliente(cliente) {

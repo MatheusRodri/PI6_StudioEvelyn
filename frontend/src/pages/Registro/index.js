@@ -9,6 +9,7 @@ export default function Registro() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nome, setNome] = useState('');
+  const [cpf, setCpf] = useState('');
 
 
   const nav = useNavigate()
@@ -32,6 +33,7 @@ export default function Registro() {
           },
           body: JSON.stringify({
             NOME: nome,
+            CPF: cpf,
             EMAIL: email,
             SENHA: password
           }),
@@ -55,6 +57,7 @@ export default function Registro() {
           <h2 style={{ fontFamily: 'Arial, sans-serif' }}>REGISTRO</h2>
           <form id='register-form' onSubmit={handleRegister}>
             <input onChange={(e) => setNome(e.target.value)} value={nome} type='nome' id='nome' name='nome' placeholder='Nome' /><br />
+            <input onChange={(e) => setCpf(e.target.value)} value={cpf} type='text' id='cpf' name='cpf' placeholder='CPF' /><br />
             <input onChange={(e) => setEmail(e.target.value)} value={email} type='email' id='email' name='email' placeholder='Endereço de E-mail' /><br />
             <input onChange={(e) => setPassword(e.target.value)} value={password} type='password' id='password' name='password' placeholder='Senha' /><br />
             <input type='submit' value='REGISTRAR' />
