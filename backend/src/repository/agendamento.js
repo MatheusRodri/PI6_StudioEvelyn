@@ -1,19 +1,19 @@
 import con from "../connection.js";
 
 // Função para exibir todos os agendamentos
-export async function exibirAgendamentos() {
-    try {
-        let comando = `SELECT * FROM VM_CLIENTES_AGENDAMENTOS`;
-        let resp = await con.query(comando, []);
-        let linhas = resp.length;
-        if (linhas === 0) {
-            throw new Error("Erro ao realizar operação!");
-        }
-        return resp[0];
-    } catch (error) {
-        throw new Error(error.message);
-    }
-}
+// export async function exibirAgendamentos() {
+//     try {
+//         let comando = `SELECT * FROM VM_CLIENTES_AGENDAMENTOS`;
+//         let resp = await con.query(comando, []);
+//         let linhas = resp.length;
+//         if (linhas === 0) {
+//             throw new Error("Erro ao realizar operação!");
+//         }
+//         return resp[0];
+//     } catch (error) {
+//         throw new Error(error.message);
+//     }
+// }
 
 // Função para criar um novo agendamento
 export async function criarAgendamento(agendamento) {

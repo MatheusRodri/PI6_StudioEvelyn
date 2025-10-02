@@ -29,35 +29,35 @@ servidor.post('/login', async (req, res) => {
 });
 
 // Rota para exibir todos os clientes
-servidor.get('/cliente', async (req, res) => {
-    try {
-        const cliente = await exibirClientes();
-        res.status(200).json(cliente);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
+// servidor.get('/cliente', async (req, res) => {
+//     try {
+//         const cliente = await exibirClientes();
+//         res.status(200).json(cliente);
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
+// });
 
 // Rota para remover um cliente
-servidor.delete('/cliente', async (req, res) => {
-    try {
-        const cpf = req.body;
-        const resposta = await removerCliente(cpf);
-        res.status(200).json(resposta);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
+// servidor.delete('/cliente', async (req, res) => {
+//     try {
+//         const cpf = req.body;
+//         const resposta = await removerCliente(cpf);
+//         res.status(200).json(resposta);
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
+// });
 
 
 // Rota para atualizar um cliente
-servidor.put('/cliente', async (req, res) => {
-    try {
-        const cliente = req.body;
-        const resposta = await atualizarCliente(cliente);
-        res.status(200).json(resposta);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
+// servidor.put('/cliente', async (req, res) => {
+//     try {
+//         const cliente = req.body;
+//         const resposta = await atualizarCliente(cliente);
+//         res.status(200).json(resposta);
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
+// });
 export default servidor;

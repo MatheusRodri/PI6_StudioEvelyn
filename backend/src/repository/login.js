@@ -40,42 +40,42 @@ export async function login(login) {
 }
 
 // Função para exibir todos os clientes
-export async function exibirClientes() {
-    try {
-        const comando = `SELECT 
-                            *
-                        FROM CLIENTES`
-            ;
-        const resp = await con.query(comando);
-        return resp[0];
-    }catch (error) {
-        throw new Error(error.message);
-    }
-}
+// export async function exibirClientes() {
+//     try {
+//         const comando = `SELECT 
+//                             *
+//                         FROM CLIENTES`
+//             ;
+//         const resp = await con.query(comando);
+//         return resp[0];
+//     }catch (error) {
+//         throw new Error(error.message);
+//     }
+// }
 
 // Função para remover um cliente
-export async function removerCliente(cpf) {
-    try {
-        const comando = `DELETE FROM CLIENTES WHERE CPF = ?`;
-        const valores = [cpf.CPF];
+// export async function removerCliente(cpf) {
+//     try {
+//         const comando = `DELETE FROM CLIENTES WHERE CPF = ?`;
+//         const valores = [cpf.CPF];
         
-        await con.query(comando, valores);
-    } catch (error) {
-        throw new Error(error.message);
-    }
-}
+//         await con.query(comando, valores);
+//     } catch (error) {
+//         throw new Error(error.message);
+//     }
+// }
 
 // Função para atualizar um cliente
-export async function atualizarCliente(cliente) {
-    try {
-        const comando = `UPDATE CLIENTES
-                        SET NOME = ?, EMAIL = ?, SENHA = ?
-                        WHERE CPF = ?`
-            ;
-        const valores = [cliente.NOME, cliente.EMAIL, cliente.SENHA, cliente.CPF];
-        await con.query(comando, valores);
-    }
-    catch (error) {
-        throw new Error(error.message);
-    }
-}
+// export async function atualizarCliente(cliente) {
+//     try {
+//         const comando = `UPDATE CLIENTES
+//                         SET NOME = ?, EMAIL = ?, SENHA = ?
+//                         WHERE CPF = ?`
+//             ;
+//         const valores = [cliente.NOME, cliente.EMAIL, cliente.SENHA, cliente.CPF];
+//         await con.query(comando, valores);
+//     }
+//     catch (error) {
+//         throw new Error(error.message);
+//     }
+// }
