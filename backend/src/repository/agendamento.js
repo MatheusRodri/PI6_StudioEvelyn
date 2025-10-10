@@ -1,4 +1,3 @@
-console.log('>>>> 4. EXECUTANDO O ARQUIVO REAL de agendamento.js <<<<');
 import {con} from "../connection.js";
 
 // Função para exibir todos os agendamentos

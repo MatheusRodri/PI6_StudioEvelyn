@@ -1,4 +1,3 @@
-console.log('>>>> 1. EXECUTANDO O ARQUIVO DE TESTE');
 // Importação das funcionalidades do express, cors e do controller
 import 'dotenv/config';
 import express from 'express';

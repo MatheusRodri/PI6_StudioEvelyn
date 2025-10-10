@@ -1,4 +1,3 @@
-console.log('>>>> 3. EXECUTANDO agendamentosController.js');
 import { Router } from "express";
 import { exibirAgendamentos, criarAgendamento,exibirAgendamentoCliente} from "../repository/agendamento.js";
 
