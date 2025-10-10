@@ -1,19 +1,23 @@
-import con from "../connection.js";
+console.log('>>>> 4. EXECUTANDO O ARQUIVO REAL de agendamento.js <<<<');
+import {con} from "../connection.js";
 
 // Função para exibir todos os agendamentos
-// export async function exibirAgendamentos() {
-//     try {
-//         let comando = `SELECT * FROM VM_CLIENTES_AGENDAMENTOS`;
-//         let resp = await con.query(comando, []);
-//         let linhas = resp.length;
-//         if (linhas === 0) {
-//             throw new Error("Erro ao realizar operação!");
-//         }
-//         return resp[0];
-//     } catch (error) {
-//         throw new Error(error.message);
-//     }
-// }
+export async function exibirAgendamentos() {
+    try {
+        let comando = `SELECT * FROM VM_CLIENTES_AGEDAMENTOS`;
+        let resp = await con.query(comando, []);
+        let linhas = resp.length;
+        
+        if (linhas === 0) {
+            return { message: "Nenhum agendamento encontrado.", success: false, dados: [] };
+        }
+        // Adiciona a mensage, success e o retorno dos dados
+        return { message: "Agendamentos listados com sucesso!", success: true, dados: resp[0] };
+
+    } catch (error) {
+        return { message: "Houve um erro ao listar os agendamentos.", success: false }
+    }
+}
 
 // Função para criar um novo agendamento
 export async function criarAgendamento(agendamento) {
@@ -24,28 +28,31 @@ export async function criarAgendamento(agendamento) {
 		VALUES (?, ?, ?, ?,?,?);`
             ;
         const valores = [agendamento.DATA, agendamento.HORA, agendamento.VALOR, agendamento.PROCEDIMENTO, agendamento.TP_PAGAMENTO, agendamento.ID_CLIENT];
-        console.log(valores);
         const resp = await con.query(comando, valores);
 
 
-        return { id: resp.insertId, ...agendamento };
+        if(resp[0].affectedRows == 1){
+        return { message: "Agendamento realizado com sucesso!", success: true, data: agendamento} 
+
+        } else {
+            return { message: "Houve um erro ao criar o agendamento.", success: false };
+        }
+        
     } catch (error) {
-        throw new Error(error.message);
+        return { message: "Houve um erro ao criar o agendamento.", success: false };
     }
 }
 
-// Função para exibir um agendamento de um cliente por CPF
-export async function exibirAgendamentoCliente(cpf) {
-    try {
-        console.log("Esse é o agendamento: ",  cpf);
-        const query = `SELECT * FROM VM_CLIENTES_AGEDAMENTOS WHERE CPF = ?`;
-        console.log("cpf", cpf);
-        let resp = await con.query(query, cpf);
-        console.log(resp[0])
-        return resp[0];
 
-    }
-    catch (error) {
-        throw new Error(error.message);
-    }
+export async function exibirAgendamentoCliente(cpf) {
+  try {
+    const query = `SELECT * FROM VM_CLIENTES_AGEDAMENTOS WHERE CPF = ?`;
+    
+    let [resp] = await con.query(query, [cpf]); 
+    
+    return { message: "Agendamento listado com sucesso!", success: true, data: resp };
+
+  } catch (error) {
+    return { message: "Houve um erro ao listar o agendamento.", success: false };
+  }
 }
