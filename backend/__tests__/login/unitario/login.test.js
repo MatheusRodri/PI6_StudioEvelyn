@@ -44,4 +44,35 @@ describe('Teste Unitário: login', () => {
       [dados.EMAIL, dados.SENHA]
     );
   });
+
+  it('deve retornar erro quando email ou senha são inválidos', async () => {
+    const dados = {EMAIL: 'email_invalido', SENHA: 'senha_invalida'};
+    con.query.mockResolvedValue([ [] ]); // Simula nenhum usuário encontrado
+
+    const resultado = await login(dados);
+    expect(resultado).toEqual({ message: "Email ou senha inválidos.", success: false });
+
+    expect(con.query).toHaveBeenCalledTimes(1);
+    expect(con.query).toHaveBeenCalledWith(
+      expect.any(String),
+      [dados.EMAIL, dados.SENHA]
+    );
+  });
+
+  it('erro no banco de dados', async () => {
+    const dados = {EMAIL: 'teste@exemplo.com', SENHA: 'senha123'};
+
+    con.query.mockRejectedValue(new Error('Erro no banco de dados'));
+
+    const resultado = await login(dados);
+
+    expect(resultado).toEqual({ message: "Erro ao realizar login!", success: false });
+
+    expect(con.query).toHaveBeenCalledTimes(1);
+
+    expect(con.query).toHaveBeenCalledWith(
+      expect.any(String),
+      [dados.EMAIL, dados.SENHA]
+    );
+  });
 });

@@ -39,4 +39,29 @@ describe('POST /agendamentos', () => {
     expect(criarAgendamento).toHaveBeenCalledTimes(1);
     expect(criarAgendamento).toHaveBeenCalledWith(novoAgendamento);
   });
+
+  it('Deve retornar status 500 se ocorrer um erro ao criar o agendamento', async () => {
+    // Arrange
+    const novoAgendamento = {
+      DATA: '2025-11-20',
+      HORA: '14:30',
+      PROCEDIMENTO: 'Design de Sobrancelha',
+      VALOR: 50.00,
+      TP_PAGAMENTO: 'Online',
+      ID_CLIENT: 1
+    };
+
+    const agendamento = novoAgendamento;
+    criarAgendamento.mockRejectedValue(agendamento);
+
+    const response = await request(servidor)
+      .post('/agendamentos')
+      .send(novoAgendamento);
+
+    expect(response.status).toBe(500);
+    expect(response.body).toEqual({ message: "Houve um erro ao criar o agendamento.", success: false });
+    expect(criarAgendamento).toHaveBeenCalledTimes(1);
+    expect(criarAgendamento).toHaveBeenCalledWith(novoAgendamento);
+  });
+
 });

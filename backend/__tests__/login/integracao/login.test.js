@@ -50,4 +50,28 @@ describe('POST /login', () => {
     expect(login).toHaveBeenCalledTimes(1);
     expect(login).toHaveBeenCalledWith(dadosLogin);
   });
+
+  // Teste 02: Erro 500
+
+  it('Deve retornar status 500 em caso de erro no servidor', async () => {
+    // Arrange
+    const dadosLogin = {
+      EMAIL: 'teste@exemplo.com',
+      SENHA: 'senha123'
+    };
+
+    // Simulamos um erro no repositório
+    login.mockRejectedValue(new Error('Erro no servidor'));
+    // Act
+    const response = await request(servidor)
+      .post('/login')
+      .send(dadosLogin);
+    // Assert
+    expect(response.status).toBe(500);
+    expect(response.body).toEqual({ message: 'Houve um erro ao realizar o login.', success: false });
+    expect(login).toHaveBeenCalledTimes(1);
+    expect(login).toHaveBeenCalledWith(dadosLogin);
+  });
+
+
 });

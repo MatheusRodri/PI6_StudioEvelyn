@@ -12,7 +12,7 @@ servidor.post('/cliente', async (req, res) => {
         res.status(200).json(novoCliente);
         
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ message: "Erro ao cadastrar cliente!", success: false});
     }
 });
 
@@ -25,7 +25,7 @@ servidor.post('/login', async (req, res) => {
         res.status(200).json(cliente);
         
     } catch (error) {
-        res.status(500).json( { error: error.message });
+        res.status(500).json( {message: "Houve um erro ao realizar o login.", success: false  });
     }
 });
 

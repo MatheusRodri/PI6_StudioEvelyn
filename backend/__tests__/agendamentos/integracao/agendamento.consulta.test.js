@@ -48,4 +48,15 @@ describe('Get /agendamentos/cliente/:id', () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual(agendamentosMock);
   });
+
+  it('Deve retornar 500 em caso de erro no servidor', async () => {
+    // Arrange
+    const cpf = '123';
+    exibirAgendamentoCliente.mockRejectedValue(new Error('Erro no banco de dados'));
+    // Act
+    const response = await request(servidor).get(`/agendamentos/cliente/${cpf}`);
+    // Assert
+    expect(response.status).toBe(500);
+    expect(response.body).toEqual({ error: 'Erro no banco de dados' });
+  });
 });

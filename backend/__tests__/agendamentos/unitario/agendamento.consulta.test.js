@@ -60,7 +60,21 @@ describe('Teste Unitário: exibirAgendamentoCliente', () => {
 
     // 3. Assert
     // Verificamos se a função retornou corretamente um array vazio
-    expect(resultado).toEqual([]);
+    expect(resultado).toEqual({ message: "Agendamento listado com sucesso!", success: true, data: [] });
+    expect(con.query).toHaveBeenCalledTimes(1);
+    expect(con.query).toHaveBeenCalledWith(expect.any(String), [cpfCliente]);
+  });
+
+  it('deve retornar um erro se a consulta ao banco falhar', async () => {
+
+    // 1. Arrange
+    const cpfCliente = '123';
+    // Instruímos o mock a lançar um erro quando chamado
+    con.query.mockRejectedValue(new Error('Erro de conexão com o banco'));
+    // 2. Act
+    const resultado = await exibirAgendamentoCliente(cpfCliente);
+    // 3. Assert
+    expect(resultado).toEqual({ message: "Erro de conexão com o banco !", success: false });
     expect(con.query).toHaveBeenCalledTimes(1);
     expect(con.query).toHaveBeenCalledWith(expect.any(String), [cpfCliente]);
   });
