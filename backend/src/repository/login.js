@@ -21,23 +21,26 @@ export async function criarCliente(cliente) {
     }
 }
 
+// src/repository/login.js
 export async function login(login) {
+  try {
+    const comando = `SELECT * FROM CLIENTES WHERE EMAIL = ? AND SENHA = ?`;
+    const valores = [login.EMAIL, login.SENHA];
+    
+    // resp recebe [rows, fields]
+    const [rows] = await con.query(comando, valores);
 
-
-    try {
-        const comando = `SELECT 
-                            *
-                        FROM CLIENTES
-                        WHERE EMAIL = ? AND SENHA = ?`
-            ;
-        const valores = [login.EMAIL, login.SENHA];
-     
-        const resp = await con.query(comando, valores);
-     
-
-        return { message: "Login realizado com sucesso!", success: true, data: resp[0] };
-
-    } catch (error) {
-        return { message: "Erro ao realizar login!", success: false };
+    // Verificamos se o array 'rows' encontrou algum usuário
+    if (rows.length > 0) {
+      // A CORREÇÃO: Pegamos o primeiro usuário encontrado (rows[0])
+      const usuario = rows[0];
+      return { message: "Login realizado com sucesso!", success: true, data: usuario };
+    } else {
+      // Se não encontrou ninguém, retorna um erro de login
+      return { message: "Email ou senha inválidos.", success: false };
     }
+
+  } catch (error) {
+    return { message: "Erro ao realizar login!", success: false };
+  }
 }
