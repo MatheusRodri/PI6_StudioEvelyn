@@ -57,6 +57,6 @@ describe('Get /agendamentos/cliente/:id', () => {
     const response = await request(servidor).get(`/agendamentos/cliente/${cpf}`);
     // Assert
     expect(response.status).toBe(500);
-    expect(response.body).toEqual({ error: 'Erro no banco de dados' });
+    expect(response.body).toEqual({ message: 'Erro no banco de dados', success: false });
   });
 });

@@ -10,6 +10,23 @@ export async function criarAgendamento(agendamento) {
 		VALUES (?, ?, ?, ?,?,?);`
             ;
         const valores = [agendamento.DATA, agendamento.HORA, agendamento.VALOR, agendamento.PROCEDIMENTO, agendamento.TP_PAGAMENTO, agendamento.ID_CLIENT];
+
+        // Verifica se alguma campo está vazio
+        for (let valor of valores) {
+            if (valor === '' || valor === null || valor === undefined) {
+                return { message: "Todos os campos devem ser preenchidos.", success: false };
+            }
+        }
+
+        // Verifica se já existe um agendamento no mesmo dia e horário
+        const verificaComando = `SELECT * FROM AGENDAMENTOS WHERE DATA = ? AND HORA = ?;`;
+        const verificaValores = [agendamento.DATA, agendamento.HORA];
+        const [verificaResp] = await con.query(verificaComando, verificaValores);
+
+        if (verificaResp.length > 0) {
+            return { message: "Já existe um agendamento para este dia e horário.", success: false };
+        }
+
         const resp = await con.query(comando, valores);
 
 

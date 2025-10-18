@@ -8,7 +8,6 @@ servidor.post('/agendamentos', async (req, res) => {
     try {
 
         const agendamento = req.body; // Assumindo que o corpo da requisição contém o objeto agendamento
-        console.log(agendamento);
         const novoAgendamento = await criarAgendamento(agendamento);
         res.status(201).json(novoAgendamento);
 
@@ -25,14 +24,13 @@ servidor.get('/agendamentos/cliente/:CPF', async (req, res) => {
     try {
 
         const cpf = req.params.CPF; 
-        console.log(cpf);
         const agendamentos = await exibirAgendamentoCliente(cpf);
         res.status(200).json(agendamentos);
 
 
     } catch (error) {
 
-        res.status(500).json({ message: "Houve um erro ao buscar os agendamentos.", success: false } );
+        res.status(500).json({ message: "Erro no banco de dados", success: false } );
         
     }
 });
