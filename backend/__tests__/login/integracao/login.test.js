@@ -73,5 +73,24 @@ describe('POST /login', () => {
     expect(login).toHaveBeenCalledWith(dadosLogin);
   });
 
+  it('Deve retornar status 401 para credenciais inválidas', async () => {
+    // Arrange
+    const dadosLogin = {
+      EMAIL: 'teste@exemplo.com',
+      SENHA: 'senhaErrada'
+    };
+    // Simulamos credenciais inválidas
+    login.mockResolvedValue({ message: "Credenciais inválidas.", success: false });
+    // Act
+    const response = await request(servidor)
+      .post('/login')
+      .send(dadosLogin);
+    // Assert
+    expect(response.status).toBe(401);
+    expect(response.body).toEqual({ message: "Credenciais inválidas.", success: false });
+    expect(login).toHaveBeenCalledTimes(1);
+    expect(login).toHaveBeenCalledWith(dadosLogin);
+  });
+
 
 });

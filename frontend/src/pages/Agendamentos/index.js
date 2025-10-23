@@ -40,7 +40,8 @@ function AgendamentoDetalhe() {
       const cpf = localStorage.getItem('CPF');
       console.log(cpf)
       const response = await axios.get(`http://localhost:5000/agendamentos/cliente/${cpf}`); // <-- CPF na rota
-      setDados(response.data);
+      //console.log('Response data:', response.data.data);
+      setDados(response.data.data);
     } catch (error) {
       console.error('Erro ao carregar agendamentos:', error);
     }
@@ -67,7 +68,10 @@ function AgendamentoDetalhe() {
   }
 
   function handleLoggout() {
-    
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('CPF');
+    localStorage.removeItem('ID');
+    nav('/');
   }
 
   return (

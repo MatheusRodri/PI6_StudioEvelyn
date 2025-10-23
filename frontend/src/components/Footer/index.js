@@ -6,7 +6,7 @@ export default function Footer() {
     return (
         <footer id="footer">
             <section id="text">
-                <p>Desenvolvido por: Agatha Vitoria, Emily, Felipe e Matheus</p>
+                <p>Desenvolvido por: Emily, Felipe e Matheus</p>
             </section>
             <section id="redes">
                 <a className="icon" href="https://www.instagram.com/studioevelynciliosesobrancelha?igsh=MWlhcmpyYTVtNDI3eQ%3D%3D" target="_blank" rel="noreferrer">

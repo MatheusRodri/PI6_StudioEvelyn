@@ -31,19 +31,22 @@ export default function Login() {
       });
 
       if (response.ok) {
-        const data = await response.json(); // <-- transforma em objeto JS
+        const {data} = await response.json(); // <-- transforma em objeto JS
 
         console.log('Dados recebidos:', data);
 
         // Armazena no cache (localStorage)
-        localStorage.setItem('usuario',data[0].NOME);
-        localStorage.setItem('CPF', data[0].CPF);
-        localStorage.setItem('ID', data[0].ID);
+        localStorage.setItem('usuario',data.NOME);
+        localStorage.setItem('CPF', data.CPF);
+        localStorage.setItem('ID', data.ID);
        nav('/agendamentos')
      }
+      else {
+        alert(response.data.mensage);
+      }
     }
     catch (error) {
-      console.error('Erro ao fazer login:', error);
+      alert('Erro ao efetuar login. Verifique suas credenciais e tente novamente.');
     }
 }
 

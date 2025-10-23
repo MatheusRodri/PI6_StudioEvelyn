@@ -18,7 +18,7 @@ export default function Registro() {
   async function handleRegister(e) {
     e.preventDefault()
     if (!email || !password || !nome) {
-      alert('Preencha todos os campos')
+      alert('Por favor, preencha todos os campos. ')
       return
     } else if (password.length < 6) {
       alert('A senha deve ter no mínimo 6 caracteres')
@@ -26,7 +26,7 @@ export default function Registro() {
     } else {
       try {
 
-        const response = await fetch('http://localhost:5000/registro', {
+        const response = await fetch('http://localhost:5000/cliente', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -38,6 +38,14 @@ export default function Registro() {
             SENHA: password
           }),
         });
+
+        if (response.ok) {
+          alert('Cadastro realizado com sucesso!');
+          nav('/login')
+        } else {
+          const errorData = await response.json();
+          alert(errorData.message || 'Erro ao cadastrar usuário');
+        }
         
        
 

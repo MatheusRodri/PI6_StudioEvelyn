@@ -28,7 +28,7 @@ function Agendamento() {
       return;
     }
     if (total === 0) {
-      alert('Por favor, selecione pelo menos um serviço.');
+      alert('Por favor, preencha todos os campos.');
       return;
     }
 
@@ -67,11 +67,11 @@ function Agendamento() {
         <h2>Agendamento</h2>
         <label>
           Data:
-          <input type="date" value={dataMarca} onChange={(e) => setDataMarca(e.target.value)} />
+          <input type="date" name='data' value={dataMarca} onChange={(e) => setDataMarca(e.target.value)} />
         </label>
         <label>
           Horário:
-          <input type="time" value={horario} onChange={(e) => setHorario(e.target.value)} />
+          <input type="time" name='hora' value={horario} onChange={(e) => setHorario(e.target.value)} />
         </label>
         <h3>Serviços:</h3>
         <ul className="servicos-list">
@@ -81,6 +81,7 @@ function Agendamento() {
                 <input
                   type="checkbox"
                   value={servico.name}
+                  name="servico"
                   checked={servicosSelecionados.includes(servico.name)}
                   onChange={(e) => {
                     const servicoSelecionado = servico;
@@ -110,7 +111,7 @@ function Agendamento() {
         {total > 0 && (
           <p>Total: R$ {total.toFixed(2)}</p>
         )}
-        <button onClick={handleAgendar}>Agendar</button>
+        <button id='btn-agendar' onClick={handleAgendar}>Agendar</button>
       </div>
       <Footer />
     </div>

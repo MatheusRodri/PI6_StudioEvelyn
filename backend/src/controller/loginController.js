@@ -22,6 +22,9 @@ servidor.post('/login', async (req, res) => {
    
         const log = req.body; 
         const cliente = await login(log);
+        if (!cliente.data) {
+            return res.status(401).json({ message: "Credenciais inválidas.", success: false });
+        }
         res.status(200).json(cliente);
         
     } catch (error) {
