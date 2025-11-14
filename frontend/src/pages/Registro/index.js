@@ -18,7 +18,7 @@ export default function Registro() {
   async function handleRegister(e) {
     e.preventDefault()
     if (!email || !password || !nome) {
-      alert('Por favor, preencha todos os campos. ')
+      alert('Por favor, preencha todos os campos.')
       return
     } else if (password.length < 6) {
       alert('A senha deve ter no mínimo 6 caracteres')
