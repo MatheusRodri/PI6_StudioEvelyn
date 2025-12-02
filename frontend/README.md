@@ -19,3 +19,13 @@ Pastas:
     - Como o próprio nome diz, é a pasta na qual irá conter todas as paginas do projetos
   - **Styles**
     - Como o próprio nome diz, é a pasta na qual irá conter todos os estilos globais  
+
+
+Comandos para os testes:
+
+- `npm test` : Executa os testes unitários e integração utilizando o Jest
+- `npm test __tests__/nomeDoArquivo.test.js` : Executa os testes unitários de um arquivo específico.
+- `npm run test:coverage` : Executa os testes unitários e gera um relatório
+
+Cypress
+- `npx cypress open` : Abre o Cypress para executar os testes end to end
